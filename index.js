@@ -27,7 +27,8 @@ app.get('/', (req, res) => {
 	res.redirect('/api/');
 });
 /* START CONTROLLERS HERE */
-
+const usersController = require('./controllers/users');
+app.use('/api/users/', usersController);
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');

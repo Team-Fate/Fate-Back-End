@@ -100,13 +100,10 @@ const handleValidationErrors = (err, req, res, next) => {
 	}
 };
 
-const handleValidateAuthorization = (req, document) => {
-	const authorizationRole = 'admin';
-	// Check if the current user is also the owner of the document
-	if (!req.user.role.equals(admin)) {
+const handleValidateAuthorization = (req, role) => {
+	// Check if the current user role is equal to role
+	if (!req.user.role.equals(role)) {
 		throw new AuthorizationError();
-	} else {
-		return document;
 	}
 };
 
