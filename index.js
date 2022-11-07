@@ -28,10 +28,10 @@ app.get('/', (req, res) => {
 });
 /* START CONTROLLERS HERE */
 const cardsController = require('./controllers/cards');
-app.use('/cards', cardsController);
+app.use('/api/cards', cardsController);
 
 const storiesController = require('./controllers/stories');
-app.use('/stories', storiesController);
+app.use('/api/stories', storiesController);
 
 
 
