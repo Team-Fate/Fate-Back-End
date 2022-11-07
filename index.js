@@ -27,6 +27,13 @@ app.get('/', (req, res) => {
 	res.redirect('/api/');
 });
 /* START CONTROLLERS HERE */
+const cardsController = require('./controllers/cards');
+app.use('/cards', cardsController);
+
+const storiesController = require('./controllers/stories');
+app.use('/stories', storiesController);
+
+
 
 /* END CONTROLLERS HERE */
 
