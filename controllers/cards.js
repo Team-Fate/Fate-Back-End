@@ -40,10 +40,14 @@ router.post('/', requireToken, async (req, res, next) => {
 router.patch('/:cardId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		const card = await Card.findByIdAndUpdate(req.params.cardId, req.body, {
-			new: true,
-		});
-		res.status(200).json(updatedCharacter);
+		const updatedCard = await Card.findByIdAndUpdate(
+			req.params.cardId,
+			req.body,
+			{
+				new: true,
+			}
+		);
+		res.status(200).json(updatedCard);
 	} catch (error) {
 		next(error);
 	}
