@@ -15,6 +15,15 @@ class OwnershipError extends Error {
 	}
 }
 
+class UserError extends Error {
+	constructor() {
+		super();
+		this.name = 'UserError';
+		this.statusCode = 401;
+		this.message = 'The provided token does not match the user';
+	}
+}
+
 class DocumentNotFoundError extends Error {
 	constructor() {
 		super();
@@ -61,13 +70,21 @@ class AuthorizationError extends Error {
 	}
 }
 
-const handleValidateOwnership = (req, document) => {
-	const ownerId = document.owner._id || document.owner;
+const handleValidateOwnership = (req, document, property) => {
+	const ownerId = document[property];
 	// Check if the current user is also the owner of the document
 	if (!req.user._id.equals(ownerId)) {
 		throw new OwnershipError();
 	} else {
 		return document;
+	}
+};
+
+const handleValidateUser = (req, user) => {
+	if (!req.user.equals(user)) {
+		throw new UserError();
+	} else {
+		return user;
 	}
 };
 
@@ -100,13 +117,10 @@ const handleValidationErrors = (err, req, res, next) => {
 	}
 };
 
-const handleValidateAuthorization = (req, document) => {
-	const authorizationRole = 'admin';
-	// Check if the current user is also the owner of the document
-	if (!req.user.role.equals(admin)) {
+const handleValidateAuthorization = (req, role) => {
+	// Check if the current user role is equal to role
+	if (req.user.role != role) {
 		throw new AuthorizationError();
-	} else {
-		return document;
 	}
 };
 
@@ -129,4 +143,5 @@ module.exports = {
 	handleValidationErrors,
 	handleErrors,
 	handleValidateAuthorization,
+	handleValidateUser,
 };
