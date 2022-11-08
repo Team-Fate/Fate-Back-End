@@ -31,6 +31,10 @@ const usersController = require('./controllers/users');
 app.use('/api/users/', usersController);
 const charactersController = require('./controllers/character');
 app.use('/api/characters/', charactersController);
+const cardsController = require('./controllers/cards');
+app.use('/api/cards', cardsController);
+const storiesController = require('./controllers/stories');
+app.use('/api/stories', storiesController);
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');
