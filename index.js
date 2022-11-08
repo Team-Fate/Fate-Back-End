@@ -29,6 +29,9 @@ app.get('/', (req, res) => {
 /* START CONTROLLERS HERE */
 const actions = require('./controllers/actions.js');
 app.use('/api/actions', actions)
+
+const items = require('./controllers/items.js');
+app.use('/api/items', items);
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');
