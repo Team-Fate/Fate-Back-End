@@ -29,6 +29,8 @@ app.get('/', (req, res) => {
 /* START CONTROLLERS HERE */
 const usersController = require('./controllers/users');
 app.use('/api/users/', usersController);
+const charactersController = require('./controllers/character');
+app.use('/api/characters/', charactersController);
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');

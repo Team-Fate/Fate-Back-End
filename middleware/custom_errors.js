@@ -70,8 +70,8 @@ class AuthorizationError extends Error {
 	}
 }
 
-const handleValidateOwnership = (req, document) => {
-	const ownerId = document.owner._id || document.owner;
+const handleValidateOwnership = (req, document, property) => {
+	const ownerId = document[property];
 	// Check if the current user is also the owner of the document
 	if (!req.user._id.equals(ownerId)) {
 		throw new OwnershipError();
