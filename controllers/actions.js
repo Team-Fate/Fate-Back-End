@@ -37,8 +37,8 @@ router.post('/', requireToken, async (req, res, next) => {
 router.patch('/:actionId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		const updatedAction = Action.findOneAndUpdate(
-			{ _id: req.params.actionId },
+		const updatedAction = Action.findByIdAndUpdate(
+			req.params.actionId,
 			req.body,
 			{
 				new: true,
