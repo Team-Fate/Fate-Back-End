@@ -40,10 +40,10 @@ router.post('/', requireToken, async (req, res, next) => {
 router.patch('/:eventId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		const event = Event.findByIdAndUpdate(req.params.eventId, req.body, {
+		const updatedEvent = Event.findByIdAndUpdate(req.params.eventId, req.body, {
 			new: true,
 		});
-		res.status(200).json(event);
+		res.status(200).json(updatedEvent);
 	} catch (error) {
 		next(error);
 	}
