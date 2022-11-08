@@ -35,6 +35,10 @@ const cardsController = require('./controllers/cards');
 app.use('/api/cards', cardsController);
 const storiesController = require('./controllers/stories');
 app.use('/api/stories', storiesController);
+const events = require('./controllers/events');
+app.use('/api/events', events);
+const npcs = require('./controllers/npcs');
+app.use('/api/npcs', npcs);
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');
