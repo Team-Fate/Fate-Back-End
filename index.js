@@ -27,9 +27,16 @@ app.get('/', (req, res) => {
 	res.redirect('/api/');
 });
 /* START CONTROLLERS HERE */
+const usersController = require('./controllers/users');
+app.use('/api/users/', usersController);
+const charactersController = require('./controllers/character');
+app.use('/api/characters/', charactersController);
+const cardsController = require('./controllers/cards');
+app.use('/api/cards', cardsController);
+const storiesController = require('./controllers/stories');
+app.use('/api/stories', storiesController);
 const events = require('./controllers/events');
 app.use('/api/events', events);
-
 const npcs = require('./controllers/npcs');
 app.use('/api/npcs', npcs);
 /* END CONTROLLERS HERE */
