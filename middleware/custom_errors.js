@@ -15,6 +15,15 @@ class OwnershipError extends Error {
 	}
 }
 
+class UserError extends Error {
+	constructor() {
+		super();
+		this.name = 'UserError';
+		this.statusCode = 401;
+		this.message = 'The provided token does not match the user';
+	}
+}
+
 class DocumentNotFoundError extends Error {
 	constructor() {
 		super();
@@ -71,6 +80,14 @@ const handleValidateOwnership = (req, document) => {
 	}
 };
 
+const handleValidateUser = (req, user) => {
+	if (!req.user.equals(user)) {
+		throw new UserError();
+	} else {
+		return user;
+	}
+};
+
 const handleRecordExists = (record) => {
 	if (!record) {
 		throw new DocumentNotFoundError();
@@ -102,7 +119,7 @@ const handleValidationErrors = (err, req, res, next) => {
 
 const handleValidateAuthorization = (req, role) => {
 	// Check if the current user role is equal to role
-	if (!req.user.role.equals(role)) {
+	if (req.user.role != role) {
 		throw new AuthorizationError();
 	}
 };
@@ -126,4 +143,5 @@ module.exports = {
 	handleValidationErrors,
 	handleErrors,
 	handleValidateAuthorization,
+	handleValidateUser,
 };
