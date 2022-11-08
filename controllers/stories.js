@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { requireToken } = require('../middleware/auth');
 const Story = require('../models/Story');
-const { handleValidateOwnership } = require('../middleware/custom_errors');
+const { handleValidateAuthorization } = require('../middleware/custom_errors');
 
 // GET '/' which will list out all stories (role: admin)
 router.get('/', requireToken, async (req, res, next) => {
@@ -40,10 +40,10 @@ router.post('/', requireToken, async (req, res, next) => {
 router.patch('/:storyId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		const story = Story.findByIdAndUpdate(req.params.id, req.body, {
+		const updatedStory = Story.findByIdAndUpdate(req.params.storyId, req.body, {
 			new: true,
 		});
-		res.status(200).json(story);
+		res.status(200).json(updatedStory);
 	} catch (error) {
 		next(error);
 	}
@@ -52,7 +52,7 @@ router.patch('/:storyId', requireToken, async (req, res, next) => {
 router.delete('/:storyId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		await Story.findByIdAndDelete(req.params.id);
+		await Story.findByIdAndDelete(req.params.storyId);
 		res.sendStatus(204);
 	} catch (error) {
 		next(error);
