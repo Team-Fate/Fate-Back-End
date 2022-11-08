@@ -6,10 +6,10 @@ const NPCSchema = new mongoose.Schema({
 	image: String,
 	model: String,
 	stats: {
-		S: Int,
-		D: Int,
-		C: Int,
-		I: Int,
+		S: Number,
+		D: Number,
+		C: Number,
+		I: Number,
 	},
 });
 

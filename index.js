@@ -27,7 +27,11 @@ app.get('/', (req, res) => {
 	res.redirect('/api/');
 });
 /* START CONTROLLERS HERE */
+const events = require('./controllers/events');
+app.use('/api/events', events);
 
+const npcs = require('./controllers/npcs');
+app.use('/api/npcs', npcs);
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');
