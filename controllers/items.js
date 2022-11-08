@@ -2,41 +2,57 @@ const express = require('express');
 const router = express.Router();
 const { requireToken } = require('../middleware/auth');
 const Item = require('../models/Item');
-const { handleValidateOwnership } = require('../middleware/custom_errors');
+const { handleValidateAuthorization } = require('../middleware/custom_errors');
 
-// GET (index) /api/items/
-router.get('/', (req, res, next) => {
-	Item.find({})
-		.then((item) => res.json(item))
-		.catch(next);
+// GET '/' which will list out all items (role: admin)
+router.get('/', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		const items = await Item.find();
+		res.status(200).json(items);
+	} catch (error) {
+		next(error);
+	}
 });
-
-router.get('/:itemId', (req, res, next) => {
-	const itemId = req.params.itemId;
-	Item.findById(itemId)
-		.then((item) => res.json(item))
-		.catch(next);
+// GET '/:itemId' which will list a specific item (role: user, admin)
+router.get('/:itemId', requireToken, async (req, res, next) => {
+	try {
+		const item = await Item.findById(req.params.itemId);
+		res.status(200).json(item);
+	} catch (error) {
+		next(error);
+	}
 });
-
-router.post('/', (req, res, next) => {
-	const itemData = req.body;
-	Item.create(itemData)
-		.then((item) => res.status(201).json(item))
-		.catch(next);
+// POST '/' which will add a new item and return it (role: admin)
+router.post('/', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		const item = Item.create(req.body);
+		res.status(201).json(item);
+	} catch (error) {
+		next(error);
+	}
 });
-
-router.patch('/:itemId', (req, res, next) => {
-	const itemId = req.params.itemId;
-	const itemData = req.body;
-	Item.findOneAndUpdate({ _id: itemId }, itemData, { new: true })
-		.then((item) => res.json(item))
-		.catch(next);
+// PATCH '/:itemId' which will update an item and return it (role: admin)
+router.patch('/:itemId', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		const item = await Item.findByIdAndUpdate(req.params.itemId, req.body, {
+			new: true,
+		});
+		res.status(200).json(item);
+	} catch (error) {
+		next(error);
+	}
 });
-
-router.delete('/:itemId', (req, res, next) => {
-	const itemId = req.params.itemId;
-	Item.findOneAndDelete({ _id: itemId })
-		.then((item) => res.json(item))
-		.catch(next);
+// DELETE '/:itemId' which will delete an item and return list of all cards (role: admin)
+router.delete('/:itemId', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		await Item.findByIdAndDelete(req.params.itemId);
+		res.sendStatus(204);
+	} catch (error) {
+		next(error);
+	}
 });
 module.exports = router;
