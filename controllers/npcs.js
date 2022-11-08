@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { requireToken } = require('../middleware/auth');
 const NPC = require('../models/NPC');
-const { handleValidateOwnership } = require('../middleware/custom_errors');
+const { handleValidateAuthorization } = require('../middleware/custom_errors');
 
 // GET '/' which will list out all npcs (role: admin)
 router.get('/', requireToken, async (req, res, next) => {
@@ -38,10 +38,11 @@ router.post('/', requireToken, async (req, res, next) => {
 // PATCH '/:npcId' which will update a NPC and return it (role: admin)
 router.patch('/:npcId', requireToken, async (req, res, next) => {
 	try {
-		const npc = await NPC.findByIdAndUpdate(req.params.npcId, req.body, {
+		handleValidateAuthorization(req, 'admin');
+		const updatedNpc = await NPC.findByIdAndUpdate(req.params.npcId, req.body, {
 			new: true,
 		});
-		res.status(200).json(npc);
+		res.status(200).json(updatedNpc);
 	} catch (error) {
 		next(error);
 	}
