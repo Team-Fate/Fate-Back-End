@@ -53,10 +53,10 @@ router.patch('/:cardId', requireToken, async (req, res, next) => {
 	}
 });
 // DELETE '/:cardId' which will delete a card and return list of all cards (role: admin)
-router.delete('/:id', requireToken, async (req, res, next) => {
+router.delete('/:cardId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		await Card.findByIdAndDelete(req.params.id);
+		await Card.findByIdAndDelete(req.params.cardId);
 		res.sendStatus(204);
 	} catch (error) {
 		next(error);
