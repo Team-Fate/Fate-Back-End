@@ -103,7 +103,7 @@ router.post('/', requireToken, async (req, res, next) => {
 			actions: [],
 			stats: req.body.stats,
 		});
-		res.status(200).json(character);
+		res.status(201).json(character);
 	} catch (error) {
 		next(error);
 	}

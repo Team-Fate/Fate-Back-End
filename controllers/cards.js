@@ -2,47 +2,65 @@ const express = require('express');
 const router = express.Router();
 const { requireToken } = require('../middleware/auth');
 const Card = require('../models/Card');
-const { handleValidateOwnership } = require('../middleware/custom_errors');
+const { handleValidateAuthorization } = require('../middleware/custom_errors');
 
-// GET (index) /api/cards/
-router.get('/', requireToken, (req, res, next) => {
-	Card.find({})
-		.then((cards) => res.json(cards))
-		.catch(next);
+// GET '/' which will list out all cards (role: admin)
+router.get('/', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		const cards = await Card.find();
+		res.status(200).json(cards);
+	} catch (error) {
+		next(error);
+	}
 });
 
-// GET card by ID
-
-router.get('/:id', (req, res, next) => {
-	const id = req.params.id;
-	Card.findById(id)
-		.then((cards) => res.json(cards))
-		.catch(next);
+//GET '/:cardId' which will list a specific card (role: user, admin)
+router.get('/:cardId', requireToken, async (req, res, next) => {
+	try {
+		const card = Card.findById(req.params.cardId);
+		res.status(200).json(card);
+	} catch (error) {
+		next(error);
+	}
 });
 
-// POST card
-
-router.post('/', (req, res, next) => {
-	const cardData = req.body;
-	Card.create(cardData)
-		.then((cards) => res.status(201).json(cards))
-		.catch(next);
+// POST '/' which will add a new card and return it (role: admin)
+router.post('/', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		const card = await Card.create(req.body);
+		res.status(201).json(card);
+	} catch (error) {
+		next(error);
+	}
 });
 
-// Edit/Patch card
-router.patch('/:id', (req, res, next) => {
-	const id = req.params.id;
-	const cardData = req.body;
-	Card.findOneAndUpdate({ _id: id }, cardData, { new: true })
-		.then((cards) => res.json(cards))
-		.catch(next);
+// PATCH '/:cardId' which will update a card and return it (role: admin)
+router.patch('/:cardId', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		const updatedCard = await Card.findByIdAndUpdate(
+			req.params.cardId,
+			req.body,
+			{
+				new: true,
+			}
+		);
+		res.status(200).json(updatedCard);
+	} catch (error) {
+		next(error);
+	}
 });
-
-router.delete('/:id', (req, res, next) => {
-	const id = req.params.id;
-	Card.findOneAndDelete({ _id: id })
-		.then(() => res.sendStatus(204))
-		.catch(next);
+// DELETE '/:cardId' which will delete a card and return list of all cards (role: admin)
+router.delete('/:cardId', requireToken, async (req, res, next) => {
+	try {
+		handleValidateAuthorization(req, 'admin');
+		await Card.findByIdAndDelete(req.params.cardId);
+		res.sendStatus(204);
+	} catch (error) {
+		next(error);
+	}
 });
 
 module.exports = router;
