@@ -37,10 +37,14 @@ router.post('/', requireToken, async (req, res, next) => {
 router.patch('/:itemId', requireToken, async (req, res, next) => {
 	try {
 		handleValidateAuthorization(req, 'admin');
-		const item = await Item.findByIdAndUpdate(req.params.itemId, req.body, {
-			new: true,
-		});
-		res.status(200).json(item);
+		const updatedItem = await Item.findByIdAndUpdate(
+			req.params.itemId,
+			req.body,
+			{
+				new: true,
+			}
+		);
+		res.status(200).json(updatedItem);
 	} catch (error) {
 		next(error);
 	}
