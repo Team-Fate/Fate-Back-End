@@ -27,11 +27,31 @@ app.get('/', (req, res) => {
 	res.redirect('/api/');
 });
 /* START CONTROLLERS HERE */
-const actions = require('./controllers/actions.js');
-app.use('/api/actions', actions)
 
-const items = require('./controllers/items.js');
-app.use('/api/items', items);
+const usersController = require('./controllers/users');
+app.use('/api/users/', usersController);
+
+const charactersController = require('./controllers/character');
+app.use('/api/characters/', charactersController);
+
+const storiesController = require('./controllers/stories');
+app.use('/api/stories', storiesController);
+
+const cardsController = require('./controllers/cards');
+app.use('/api/cards', cardsController);
+
+const actionsController = require('./controllers/actions.js');
+app.use('/api/actions', actionsController)
+
+const itemsController = require('./controllers/items.js');
+app.use('/api/items', itemsController);
+
+const eventsController = require('./controllers/events');
+app.use('/api/events', eventsController);
+
+const npcsController = require('./controllers/npcs');
+app.use('/api/npcs', npcsController);
+
 /* END CONTROLLERS HERE */
 
 const { handleErrors } = require('./middleware/custom_errors');
