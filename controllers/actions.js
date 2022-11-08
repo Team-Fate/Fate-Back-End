@@ -5,36 +5,36 @@ const Action = require('../models/Action');
 const { handleValidateOwnership } = require('../middleware/custom_errors');
 
 // GET (index) /api/actions/
-router.get('/', requireToken, (req, res, next) => {
+router.get('/', (req, res, next) => {
     Action.find({})
     .then((action) => res.json(action))
     .catch(next);
 });
 
-router.get('/:actionId', requireToken, (req, res, next) => {
-    const actionId = req.params.id;
-	Action.findById(actionId)
+router.get('/:Id', (req, res, next) => {
+    const Id = req.params.Id;
+	Action.findById(Id)
 		.then((action) => res.json(action))
 		.catch(next);
 });
 
-router.post('/', requireToken, (req, res, next) => {
+router.post('/', (req, res, next) => {
     const actionData = req.body;
 	Action.create(actionData)
 		.then((action) => res.status(201).json(action))
 		.catch(next);
 });
 
-router.patch('/:actionId', requireToken, (req, res, next) => {
-    const actionId = req.params.id;
+router.patch('/:actionId', (req, res, next) => {
+    const actionId = req.params.actionId;
     const actionData = req.body;
 	Action.findOneAndUpdate({ _id : actionId }, actionData, { new: true })
 		.then((action) => res.json(action))
 		.catch(next);
 });
 
-router.delete('/:actionId', requireToken, (req, res, next) => {
-    const actionId = req.params.id;
+router.delete('/:actionId', (req, res, next) => {
+    const actionId = req.params.actionId;
 	Action.findOneAndDelete({ _id: actionId})
 		.then((action) => res.json(action))
 		.catch(next);
