@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const StorySchema = new Schema({
 	name: String,
-	template: String,
+	template: [[Number]],
 	cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card' }],
 });
 
