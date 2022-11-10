@@ -1,0 +1,22 @@
+[
+	{
+		"name": "Attack",
+		"description": "Deal damage to opponent",
+		"type": "attack"
+	},
+	{
+		"name": "Defend",
+		"description": "Defense stance that absorb 50% of damage",
+		"type": "defend"
+	},
+	{
+		"name": "Heal",
+		"description": "Restore health points",
+		"type": "heal"
+	},
+	{
+		"name": "Throw lightsaber",
+		"description": "Lightsaber deal damage to all enemies and return back to you",
+		"type": "attack"
+	}
+]

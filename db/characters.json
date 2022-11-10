@@ -1,0 +1,50 @@
+[
+	{
+		"user": "aaron-user",
+		"name": "LeBron James",
+		"image": "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",
+		"model": "https://media.cnn.com/api/v1/images/stellar/prod/221006042658-02-nba-lebron-james-las-vegas.jpg?c=original",
+		"stats": {
+			"S": 15,
+			"D": 15,
+			"C": 15,
+			"I": 15
+		}
+	},
+	{
+		"user": "brandon-user",
+		"name": "Batman",
+		"image": "https://1000logos.net/wp-content/uploads/2016/10/Batman-Logo-1966.png",
+		"model": "https://static.wikia.nocookie.net/dccu/images/2/2e/Batman_-_Justice_League_-_promo.jpg/revision/latest?cb=20191214215631",
+		"stats": {
+			"S": 15,
+			"D": 15,
+			"C": 15,
+			"I": 15
+		}
+	},
+	{
+		"user": "christian-user",
+		"name": "Darth Vader",
+		"image": "https://target.scene7.com/is/image/Target/GUEST_80eb0b0f-d614-43a0-a79d-158e9cc68778?wid=325&hei=325&qlt=80&fmt=pjpeg",
+		"model": "https://asset.swarovski.com/images/$size_1450/t_swa103/b_rgb:ffffff,c_scale,dpr_3.0,f_auto,w_500/5379499_png/star-wars---darth-vader-swarovski-5379499.png",
+		"stats": {
+			"S": 15,
+			"D": 15,
+			"C": 15,
+			"I": 15
+		}
+	},
+	{
+		"user": "vlad-user",
+		"name": "OnePunchMan",
+		"image": "https://play-lh.googleusercontent.com/iSxPiIZWr1YtL4iAmL5hLoXFXDBFq5qXfbDEhKIUdRN8Bq42Bg5h5grXvOLWSpD68t4",
+		"model": "https://www.pockettactics.com/wp-content/sites/pockettactics/2022/09/one-punch-man-the-strongest-codes.jpg",
+		"stats": {
+			"S": 15,
+			"D": 15,
+			"C": 15,
+			"I": 15
+		}
+	}
+]

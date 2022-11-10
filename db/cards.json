@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Leftover Beer",
+		"description": "Leftover beer. It looks like it's your favorite.",
+		"image": "https://images.axios.com/i4KQgT8WwpbWXWVCNX560y1DXiE=/328x0:1768x1080/1920x1440/2022/09/19/1663608635539.jpg",
+		"type": "item"
+	},
+	{
+		"name": "Lightsaber",
+		"description": "Lightsaber with dead battery.",
+		"image": "https://static.wikia.nocookie.net/starwars/images/7/7d/LukeROTJsaber-MR.jpg/revision/latest/top-crop/width/360/height/360?cb=20100616172523",
+		"type": "item"
+	},
+	{
+		"name": "Lakers cap",
+		"description": "Brand new Lakers cap.",
+		"image": "https://img.hatshopping.com/9Fifty-Los-Angeles-Lakers-Cap-by-New-Era-purple.63082_rf7.jpg",
+		"type": "item"
+	},
+	{
+		"name": "Sunglasses store",
+		"description": "Best store in the city.",
+		"image": "https://www.thesomersetcollection.com/wp-content/uploads/2018/06/sunglass-hut-2.jpg",
+		"type": "event"
+	},
+	{
+		"name": "Rat",
+		"description": "Dirty rat that ate your leftover food.",
+		"image": "https://static.scientificamerican.com/sciam/cache/file/18EFE41A-3592-40DF-A4AACD086FF806EE_source.jpg?w=590&h=800&4BEE41BF-B372-4950-9A9C3A8E2A898C2A",
+		"type": "enemy"
+	}
+]

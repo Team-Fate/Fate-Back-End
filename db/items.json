@@ -1,0 +1,16 @@
+[
+	{
+		"name": "Lightsaber",
+		"description": "Lightsaber",
+		"type": "weapon",
+		"stat": "S:+2",
+		"action": "Throw lightsaber"
+	},
+	{
+		"name": "Lakers cap",
+		"description": "Brand new Lakers cap.",
+		"type": "armor",
+		"stat": "C:+1",
+		"action": "null"
+	}
+]
