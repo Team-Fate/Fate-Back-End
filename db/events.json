@@ -1,0 +1,14 @@
+[
+	{
+		"name": "combat",
+		"description": "combat phase"
+	},
+	{
+		"name": "store",
+		"description": "store phase"
+	},
+	{
+		"name": "trap",
+		"description": "trap phase"
+	}
+]

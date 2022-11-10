@@ -1,0 +1,66 @@
+[
+	{
+		"firstName": "aaron-admin",
+		"lastName": "aaron-admin",
+		"email": "aaron-admin@example.com",
+		"username": "aaron-admin",
+		"password": "aaron-admin",
+		"role": "admin"
+	},
+	{
+		"firstName": "aaron-user",
+		"lastName": "aaron-user",
+		"email": "aaron-user@example.com",
+		"username": "aaron-user",
+		"password": "aaron-user",
+		"role": "user"
+	},
+	{
+		"firstName": "brandon-admin",
+		"lastName": "brandon-admin",
+		"email": "brandon-admin@example.com",
+		"username": "brandon-admin",
+		"password": "brandon-admin",
+		"role": "admin"
+	},
+	{
+		"firstName": "brandon-user",
+		"lastName": "brandon-user",
+		"email": "brandon-user@example.com",
+		"username": "brandon-user",
+		"password": "brandon-user",
+		"role": "user"
+	},
+	{
+		"firstName": "christian-admin",
+		"lastName": "christian-admin",
+		"email": "christian-admin@example.com",
+		"username": "christian-admin",
+		"password": "christian-admin",
+		"role": "admin"
+	},
+	{
+		"firstName": "christian-user",
+		"lastName": "christian-user",
+		"email": "christian-user@example.com",
+		"username": "christian-user",
+		"password": "christian-user",
+		"role": "user"
+	},
+	{
+		"firstName": "vlad-admin",
+		"lastName": "vlad-admin",
+		"email": "vlad-admin@example.com",
+		"username": "vlad-admin",
+		"password": "vlad-admin",
+		"role": "admin"
+	},
+	{
+		"firstName": "vlad-user",
+		"lastName": "vlad-user",
+		"email": "vlad-user@example.com",
+		"username": "vlad-user",
+		"password": "vlad-user",
+		"role": "user"
+	}
+]

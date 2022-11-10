@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Rat",
+		"description": "Dirty rat that ate your leftover food.",
+		"image": "https://static.scientificamerican.com/sciam/cache/file/18EFE41A-3592-40DF-A4AACD086FF806EE_source.jpg?w=590&h=800&4BEE41BF-B372-4950-9A9C3A8E2A898C2A",
+		"model": "https://static.scientificamerican.com/sciam/cache/file/18EFE41A-3592-40DF-A4AACD086FF806EE_source.jpg?w=590&h=800&4BEE41BF-B372-4950-9A9C3A8E2A898C2A",
+		"stats": {
+			"S": 8,
+			"D": 10,
+			"C": 5,
+			"I": 5
+		}
+	},
+	{
+		"name": "Wet Willy",
+		"description": "His finger already wet. Beware.",
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxS9Jl0mv9Ru8UZHfNEeBoP8t6tm9wC-gqbg&usqp=CAU",
+		"model": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxS9Jl0mv9Ru8UZHfNEeBoP8t6tm9wC-gqbg&usqp=CAU",
+		"stats": {
+			"S": 12,
+			"D": 12,
+			"C": 3,
+			"I": 1
+		}
+	}
+]
