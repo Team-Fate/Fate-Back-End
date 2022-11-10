@@ -16,6 +16,8 @@ const NPC = require('../models/NPC');
 const Story = require('../models/Story');
 const User = require('../models/User');
 
+const bcrypt = require('bcrypt');
+
 async function cleanDb() {
 	try {
 		console.log('Deleting actions ...');
@@ -58,7 +60,15 @@ async function cleanDb() {
 async function seedDb() {
 	try {
 		console.log('Seeding users ...');
-		await User.insertMany(users);
+		await users.map(async (user) => {
+			try {
+				const password = await bcrypt.hash(user.password, 10);
+				const updatedUser = { ...user, password: password };
+				await User.create(updatedUser);
+			} catch (error) {
+				console.log(error);
+			}
+		});
 		console.log('Users seeded');
 		console.log('=====================');
 		console.log('Seeding actions ...');
