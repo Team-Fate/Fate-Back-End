@@ -10,7 +10,6 @@
 		"name": "Lakers cap",
 		"description": "Brand new Lakers cap.",
 		"type": "armor",
-		"stat": "C:+1",
-		"action": "null"
+		"stat": "C:+1"
 	}
 ]

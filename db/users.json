@@ -12,7 +12,8 @@
 		"lastName": "aaron-user",
 		"email": "aaron-user@example.com",
 		"username": "aaron-user",
-		"password": "aaron-user"
+		"password": "aaron-user",
+		"role": "user"
 	},
 	{
 		"firstName": "brandon-admin",
@@ -27,7 +28,8 @@
 		"lastName": "brandon-user",
 		"email": "brandon-user@example.com",
 		"username": "brandon-user",
-		"password": "brandon-user"
+		"password": "brandon-user",
+		"role": "user"
 	},
 	{
 		"firstName": "christian-admin",
@@ -42,7 +44,8 @@
 		"lastName": "christian-user",
 		"email": "christian-user@example.com",
 		"username": "christian-user",
-		"password": "christian-user"
+		"password": "christian-user",
+		"role": "user"
 	},
 	{
 		"firstName": "vlad-admin",
@@ -57,6 +60,7 @@
 		"lastName": "vlad-user",
 		"email": "vlad-user@example.com",
 		"username": "vlad-user",
-		"password": "vlad-user"
+		"password": "vlad-user",
+		"role": "user"
 	}
 ]
