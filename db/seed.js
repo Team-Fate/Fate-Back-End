@@ -103,28 +103,56 @@ async function seedDb() {
 				try {
 					const dbUser = await User.findOne({ username: character.user });
 					const dbStory = await Story.findOne({ name: 'tutorial' });
-					const cards = [
-						[null, null, 'Sunglasses store'],
-						[null, 'Vital-supply drink', 'Rat'],
-						['Good morning?', 'Knife', null],
-					];
+					// const cards = [
+					// 	[null, null, 'Sunglasses store'],
+					// 	[null, 'Vital-supply drink', 'Rat'],
+					// 	['Good morning?', 'Knife', null],
+					// ];
+					// await Promise.all(
+					// 	cards.map(async (cardsRow) => {
+					// 		const dbCardsRow = [];
+					// 		await Promise.all(
+					// 			cardsRow.map(async (card) => {
+					// 				if (card != null) {
+					// 					const dbCard = await Card.findOne({ name: card });
+					// 					dbCardsRow.push(dbCard._id);
+					// 				} else {
+					// 					dbCardsRow.push(null);
+					// 				}
+					// 			})
+					// 		);
+					// 		dbCards.push(dbCardsRow);
+					// 	})
+					// );
 					const dbCards = [];
-					await Promise.all(
-						cards.map(async (cardsRow) => {
-							const dbCardsRow = [];
-							await Promise.all(
-								cardsRow.map(async (card) => {
-									if (card != null) {
-										const dbCard = await Card.findOne({ name: card });
-										dbCardsRow.push(dbCard._id);
-									} else {
-										dbCardsRow.push(null);
-									}
-								})
-							);
-							dbCards.push(dbCardsRow);
-						})
-					);
+					const dbCardsRow0 = [];
+					const dbCardsRow1 = [];
+					const dbCardsRow2 = [];
+					dbCardsRow0.push(null);
+					dbCardsRow0.push(null);
+					const dbCardStore = await Card.findOne({ name: 'Sunglasses store' });
+					dbCardsRow0.push(dbCardStore);
+					dbCardsRow1.push(null);
+					const dbCardPotion = await Card.findOne({
+						name: 'Vital-supply drink',
+					});
+					dbCardsRow1.push(dbCardPotion);
+					const dbCardEnemy = await Card.findOne({
+						name: 'Rat',
+					});
+					dbCardsRow1.push(dbCardEnemy);
+					const dbStart = await Card.findOne({
+						name: 'Good morning?',
+					});
+					dbCardsRow2.push(dbStart);
+					const dbWeapon = await Card.findOne({
+						name: 'Knife',
+					});
+					dbCardsRow2.push(dbWeapon);
+					dbCardsRow2.push(null);
+					dbCards.push(dbCardsRow0);
+					dbCards.push(dbCardsRow1);
+					dbCards.push(dbCardsRow2);
 					const updatedStory = {
 						id: dbStory,
 						tokenPosition: [2, 0],
