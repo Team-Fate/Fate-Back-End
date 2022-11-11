@@ -81,16 +81,66 @@ async function seedDb() {
 		await Card.insertMany(cards);
 		console.log('Cards seeded');
 		console.log('=====================');
+		console.log('Seeding stories ...');
+		await Promise.all(
+			stories.map(async (story) => {
+				const updatedCards = [];
+				await Promise.all(
+					story.cards.map(async (card) => {
+						const dbCard = await Card.findOne({ name: card });
+						updatedCards.push(dbCard._id);
+					})
+				);
+				const updatedStory = { ...story, cards: updatedCards };
+				await Story.create(updatedStory);
+			})
+		);
+		console.log('Stories seeded');
+		console.log('=====================');
 		console.log('Seeding characters ...');
-		await characters.map(async (character) => {
-			try {
-				const dbUser = await User.findOne({ username: character.user });
-				const updatedCharacter = { ...character, user: dbUser._id };
-				await Character.create(updatedCharacter);
-			} catch (error) {
-				console.log(error);
-			}
-		});
+		await Promise.all(
+			characters.map(async (character) => {
+				try {
+					const dbUser = await User.findOne({ username: character.user });
+					const dbStory = await Story.findOne({ name: 'tutorial' });
+					const cards = [
+						[null, null, 'Sunglasses store'],
+						[null, 'Vital-supply drink', 'Rat'],
+						['Good morning?', 'Knife', null],
+					];
+					const dbCards = [];
+					await Promise.all(
+						cards.map(async (cardsRow) => {
+							const dbCardsRow = [];
+							await Promise.all(
+								cardsRow.map(async (card) => {
+									if (card != null) {
+										const dbCard = await Card.findOne({ name: card });
+										dbCardsRow.push(dbCard._id);
+									} else {
+										dbCardsRow.push(null);
+									}
+								})
+							);
+							dbCards.push(dbCardsRow);
+						})
+					);
+					const updatedStory = {
+						id: dbStory,
+						tokenPosition: [2, 0],
+						cardsPosition: dbCards,
+					};
+					const updatedCharacter = {
+						...character,
+						user: dbUser._id,
+						story: updatedStory,
+					};
+					await Character.create(updatedCharacter);
+				} catch (error) {
+					console.log(error);
+				}
+			})
+		);
 		console.log('Characters seeded');
 		console.log('=====================');
 		console.log('Seeding events ...');
@@ -112,21 +162,6 @@ async function seedDb() {
 		console.log('Seeding npcs ...');
 		await NPC.insertMany(npcs);
 		console.log('Npcs seeded');
-		console.log('=====================');
-		console.log('Seeding stories ...');
-		await Promise.all(
-			stories.map(async (story) => {
-				const updatedCards = [];
-				story.cards.map(async (card) => {
-					const dbCard = await Card.findOne({ name: card });
-					updatedCards.push(dbCard._id);
-				});
-				const updatedStory = { ...story, cards: updatedCards };
-				console.log(updatedStory);
-				await Story.create(updatedStory);
-			})
-		);
-		console.log('Stories seeded');
 		console.log('=====================');
 	} catch (error) {
 		console.log(error);
