@@ -18,7 +18,7 @@ router.get('/', requireToken, async (req, res, next) => {
 //GET '/:cardId' which will list a specific card (role: user, admin)
 router.get('/:cardId', requireToken, async (req, res, next) => {
 	try {
-		const card = Card.findById(req.params.cardId);
+		const card = await Card.findById(req.params.cardId);
 		res.status(200).json(card);
 	} catch (error) {
 		next(error);
