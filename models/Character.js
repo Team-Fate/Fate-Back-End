@@ -23,16 +23,18 @@ const CharacterSchema = new mongoose.Schema({
 	],
 	stats: { S: Number, D: Number, C: Number, I: Number },
 	story: {
-		story: {
+		id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Item',
 		},
 		tokenPosition: [Number],
 		cardsPosition: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Card',
-			},
+			[
+				{
+					type: mongoose.Schema.Types.ObjectId,
+					ref: 'Card',
+				},
+			],
 		],
 	},
 });

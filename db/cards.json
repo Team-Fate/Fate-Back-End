@@ -1,14 +1,20 @@
 [
 	{
-		"name": "Leftover Beer",
-		"description": "Leftover beer. It looks like it's your favorite.",
-		"image": "https://images.axios.com/i4KQgT8WwpbWXWVCNX560y1DXiE=/328x0:1768x1080/1920x1440/2022/09/19/1663608635539.jpg",
+		"name": "Good morning?",
+		"description": "You wake up in a room. Your head is killing you and you’re not sure where you are...you look around and see you’re in a motel in the city.",
+		"image": "https://live-production.wcms.abc-cdn.net.au/a24ba691108a4f936be0426f96a3f12d?impolicy=wcms_crop_resize&cropH=670&cropW=1191&xPos=0&yPos=0&width=862&height=485",
+		"type": "event"
+	},
+	{
+		"name": "Vital-supply drink",
+		"description": "You have found a vital-supply drink. Enjoy this revitalizing beverage and top-off your stats.",
+		"image": "https://i.ebayimg.com/images/g/aDwAAOSwwfdf1du6/s-l225.jpg",
 		"type": "item"
 	},
 	{
-		"name": "Lightsaber",
-		"description": "Lightsaber with dead battery.",
-		"image": "https://static.wikia.nocookie.net/starwars/images/7/7d/LukeROTJsaber-MR.jpg/revision/latest/top-crop/width/360/height/360?cb=20100616172523",
+		"name": "Knife",
+		"description": "On the counter is a knife... you grab it and open the door. ",
+		"image": "https://preview.redd.it/0ji389ghg0d71.png?auto=webp&s=f5b0dad80f1782dd90f085cee6a72fa0fe7e6da3",
 		"type": "item"
 	},
 	{
@@ -19,13 +25,13 @@
 	},
 	{
 		"name": "Sunglasses store",
-		"description": "Best store in the city.",
+		"description": "You enter a store. Here you can get weapons and health items. Weapons will help you when you encounter a combat situation. Health items increase your stats.",
 		"image": "https://www.thesomersetcollection.com/wp-content/uploads/2018/06/sunglass-hut-2.jpg",
 		"type": "event"
 	},
 	{
 		"name": "Rat",
-		"description": "Dirty rat that ate your leftover food.",
+		"description": "You encounter rats.  They start to attack you.  You must defend yourself!",
 		"image": "https://static.scientificamerican.com/sciam/cache/file/18EFE41A-3592-40DF-A4AACD086FF806EE_source.jpg?w=590&h=800&4BEE41BF-B372-4950-9A9C3A8E2A898C2A",
 		"type": "enemy"
 	}
