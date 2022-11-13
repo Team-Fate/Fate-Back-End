@@ -56,7 +56,7 @@ router.get('/:characterId', requireToken, async (req, res, next) => {
 	}
 });
 // GET '/:characterId/actions' which will list out all actions related to specific character (role: user, admin)
-router.get('/:characterId', requireToken, async (req, res, next) => {
+router.get('/:characterId/actions', requireToken, async (req, res, next) => {
 	try {
 		const character = await Character.findById(req.params.characterId);
 		try {
@@ -74,7 +74,7 @@ router.get('/:characterId', requireToken, async (req, res, next) => {
 	}
 });
 // GET '/:characterId/items' which will list out all items related to specific character (role: user, admin)
-router.get('/:characterId', requireToken, async (req, res, next) => {
+router.get('/:characterId/items', requireToken, async (req, res, next) => {
 	try {
 		const character = await Character.findById(req.params.characterId);
 		try {
