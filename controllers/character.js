@@ -3,23 +3,50 @@ const router = express.Router();
 const { requireToken } = require('../middleware/auth');
 const Character = require('../models/Character');
 const Action = require('../models/Action');
+const Story = require('../models/Story');
+const Card = require('../models/Card');
 const {
 	handleValidateOwnership,
 	handleValidateAuthorization,
 } = require('../middleware/custom_errors');
 
-const defaultActions = async () => {
-	const defaultActions = [];
+async function defaultActions() {
 	try {
-		const attackAction = await Action.findOne({ name: 'Attack' });
-		const defendAction = await Action.findOne({ name: 'Defend' });
-		defaultActions.push(attackAction);
-		defaultActions.push(defendAction);
-		return defaultActions;
+		const actions = await Action.find({ name: { $in: ['Attack', 'Defend'] } });
+		return actions;
 	} catch (error) {
-		next(error);
+		console.log(error);
 	}
-};
+}
+
+function findCard(cards, cardName) {
+	return cards.find((card) => card.name == cardName);
+}
+
+async function defaultTutorialCardsPosition() {
+	try {
+		const cards = await Card.find({
+			name: {
+				$in: [
+					'Good morning?',
+					'Knife',
+					'Vital-supply drink',
+					'Rat',
+					'Sunglasses store',
+				],
+			},
+		});
+		console.log(cards);
+		const cardsPosition = [
+			[null, null, findCard(cards, 'Sunglasses store')],
+			[null, findCard(cards, 'Vital-supply drink'), findCard(cards, 'Rat')],
+			[findCard(cards, 'Good morning?'), findCard(cards, 'Knife'), null],
+		];
+		return cardsPosition;
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 // GET '/' which will list out all characters (role: admin)
 // GET '/' which will list out all characters for current user (role: user)
@@ -94,17 +121,27 @@ router.get('/:characterId/items', requireToken, async (req, res, next) => {
 // POST '/' which will add a new character and return it
 router.post('/', requireToken, async (req, res, next) => {
 	try {
+		const tutorialStory = await Story.findOne({ name: 'tutorial' });
 		const character = await Character.create({
 			user: req.user._id,
 			name: req.body.name,
 			image: req.body.image,
 			model: req.body.model,
-			// actions: defaultActions(),
-			actions: [],
+			actions: await defaultActions(),
 			stats: req.body.stats,
+			status: {
+				currentHealth: req.body.stats.C * 5,
+				maxHealth: req.body.stats.C * 5,
+			},
+			story: {
+				id: tutorialStory,
+				tokenPosition: [0, 0],
+				cardsPosition: await defaultTutorialCardsPosition(),
+			},
 		});
 		res.status(201).json(character);
 	} catch (error) {
+		console.log(error);
 		next(error);
 	}
 });
