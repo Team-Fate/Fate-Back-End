@@ -37,6 +37,10 @@ const CharacterSchema = new mongoose.Schema({
 			],
 		],
 	},
+	status: {
+		maxHealth: Number,
+		currentHealth: Number,
+	},
 });
 
 const Character = mongoose.model('Character', CharacterSchema);

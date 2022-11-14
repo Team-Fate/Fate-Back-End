@@ -11,6 +11,12 @@ const NPCSchema = new mongoose.Schema({
 		C: Number,
 		I: Number,
 	},
+	actions: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Action',
+		},
+	],
 });
 
 const NPC = mongoose.model('NPC', NPCSchema);
