@@ -32,7 +32,7 @@ async function defaultTutorialCardsPosition() {
 		});
 		console.log(cards);
 		const cardsPosition = [
-			[null, null, findCard(cards, 'Sunglasses store')],
+			[null, null, findCard(cards, 'Store')],
 			[null, findCard(cards, 'Vital-supply drink'), findCard(cards, 'Rat')],
 			[findCard(cards, 'Good morning?'), findCard(cards, 'Knife'), null],
 		];
