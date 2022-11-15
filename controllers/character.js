@@ -129,6 +129,7 @@ router.post('/', requireToken, async (req, res, next) => {
 			},
 			story: {
 				id: tutorialStory,
+				name: tutorialStory.name,
 				tokenPosition: [0, 0],
 				cardsPosition: await defaultTutorialCardsPosition(),
 			},
