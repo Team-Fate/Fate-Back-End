@@ -27,13 +27,7 @@ async function defaultTutorialCardsPosition() {
 	try {
 		const cards = await Card.find({
 			name: {
-				$in: [
-					'Good morning?',
-					'Knife',
-					'Vital-supply drink',
-					'Rat',
-					'Sunglasses store',
-				],
+				$in: ['Good morning?', 'Knife', 'Vital-supply drink', 'Rat', 'Store'],
 			},
 		});
 		console.log(cards);
